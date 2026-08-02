@@ -9,6 +9,7 @@ fn posicionar_en_esquina(window: &tauri::WebviewWindow) {
         let size = window.outer_size().unwrap_or_default();
         let monitor_size = monitor.size();
         
+        // Ajuste para la esquina inferior derecha
         let x = monitor_size.width as i32 - size.width as i32 - 12;
         let y = monitor_size.height as i32 - size.height as i32 - 50;
 
@@ -20,6 +21,11 @@ fn posicionar_en_esquina(window: &tauri::WebviewWindow) {
 pub fn run() {
     tauri::Builder::default()
         .setup(|app| {
+            // ---> PASO CLAVE: Posicionar la ventana principal nada más iniciar el programa <---
+            if let Some(window) = app.get_webview_window("main") {
+                posicionar_en_esquina(&window);
+            }
+
             let quit_i = MenuItem::with_id(app, "quit", "Salir", true, None::<&str>)?;
             let show_i = MenuItem::with_id(app, "show", "Abrir App", true, None::<&str>)?;
             let menu = Menu::with_items(app, &[&show_i, &quit_i])?;
@@ -60,7 +66,6 @@ pub fn run() {
             Ok(())
         })
         .on_window_event(|window, event| match event {
-            // Solo se oculta cuando presionas la X o el botón de cerrar
             WindowEvent::CloseRequested { api, .. } => {
                 api.prevent_close();
                 window.hide().unwrap();
