@@ -13,8 +13,8 @@
     "windows": [
       {
       "title": "Water Project",
-      "width": 200,
-      "height": 250,
+      "width": 260,
+      "height": 320,
       "resizable": false,
       "decorations": false,
       "transparent": true,

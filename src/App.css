@@ -15,8 +15,11 @@ body, html {
 .window-container {
   width: 100vw;
   height: 100vh;
-  background-color: pink;
+  background: var(--color-main);
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .header-bar {
@@ -31,7 +34,60 @@ body, html {
 
 .close-button {
   background: none;
-  border: 1px solid black;
+  border: 1px solid var(--color-font-secondary);
   cursor: pointer;
   padding: 2px 6px;
+}
+
+.timer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+.time-picker {
+  background: var(--color-secondary);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: var(--color-font);
+}
+
+.time-input {
+  font-size: 3rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  width: 70px;
+  text-align: center;
+  outline: none;
+  color: var(--color-font);
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.time-input::-webkit-outer-spin-button,
+.time-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.time-separator {
+  font-size: 2rem;
+}
+
+.timer-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.timer-button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
 }
